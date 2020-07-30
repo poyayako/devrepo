@@ -1,0 +1,19 @@
+<h2>login</h2>
+{{#if message}}
+<div class="alert alert-danger">
+  <strong>Alert!!</strong>{{message}}
+</div>
+{{/if}}
+<section>
+<input type="text" class="form-control" placeholder="Username" aria-label="Username" name="username">
+</section>
+<section>
+ <input type="password" class="form-control" placeholder="Password" aria-label="Username" name="password">
+</section>
+<section>
+ <span><a href="">Forgot Password?</a></span>
+ <span><a href="">Register?</a></span>
+</section>
+<section>
+ <button type="button" class="btn btn-primary btn-block">Login</button>
+</section>

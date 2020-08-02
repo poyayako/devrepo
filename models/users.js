@@ -8,15 +8,15 @@ let userData = {};
 userData.all = () => {
  return new Promise((resolve,reject) => {
   dbConnection.query(`SELECT * FROM tbl_users`,(err,results) =>{
-   if(err) throw err;
+   if(err) throw reject(err);
    return resolve(results);
   });
 });
 }
 
-userData.findOne = (colHeader,id) => {
+userData.searchUser = (username) => {
  return new Promise((resolve,reject) => {
-  dbConnection.query(`SELECT * FROM tbl_users WHERE ${colHeader} = ?`,[id],(err,results) => {
+  dbConnection.query(`SELECT * FROM tbl_users WHERE username = ? or email = ?`,[username,username],(err,results) => {
    if(err) throw err;
    return resolve(results);
   });

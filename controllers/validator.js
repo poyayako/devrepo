@@ -16,4 +16,3 @@ return schema.validate(data);
 };
 
 module.exports.loginValidation = loginValidation;
-

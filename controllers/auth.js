@@ -2,64 +2,36 @@ const express = require('express');
 const usersTable = require('../models/users');
 const {loginValidation} = require('./validator');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 
 exports.login = async (req,res) => {
 	
 	let validationMsg = loginValidation(req.body);
+	let errors = [];
 	
 	const {username,password} = req.body;
- 
-const renderPage = (pagename,data = {}) => {
-	 res.render(`${pagename}`,data);
-}
+
  
 	if(!(typeof validationMsg.error === 'undefined')){
-		
-		return res.render('login',
-		{
-			message : validationMsg.error.details[0].message,
-			username : username
-		});
+		errors.push({ msg : validationMsg.error.details[0].message });
 	}
+  
+ const searchResult = await usersTable.searchUser(username);
 	 
-	 try{
+	if(!searchResult.length){
+	  errors.push({ msg : 'Username not found!' });
+	}
 	
-	 const searchResult = await usersTable.searchUser(username);
-	 console.log(searchResult);
+	
 	 
-	 if(!searchResult.length){
-	  return res.render('login',
-		 {
-			 message : 'Username Not Found!',
-			 username : username
-		 });
-	 }else{
-	 	 if(!(await bcrypt.compare(password,searchResult[0].password))){
-	 	  return res.render('login',
-		   {
-			   message : 'Incorrect Password!',
-			   username : username
-		   });
-	 	 }else{
-	 	 	res.render('index',
-		   {
-			   message : 'Incorrect Password!',
-			   username : username
-		   });
-	 	 }
-	 }
-	   
-	   
-	   
-		
-	 	
-	 }catch(err){
-		  console.log(err);
-	 }	
-	
-	console.log(username + ' ' + password);
 	
 	
+
+	res.render('login',{
+			errors,
+			username:username
+		});
 	
 }
-//////////u4j4j4h4h4h4h44h4h4h4h4h4h4h4j4j4j45j4j4j4i5i4i4j4j4j4j4j5j4j5j4j4j4j4j5i4i4i4i4i4i44jj4j4j4j4i44j4j4j4
+//////////u4j4j4h4h4h4h44h4h4h4h4h4h4h4j4j4j45j4j4j4i5i4i4j4j4j4j4j5j4j5j4j4j999999999999

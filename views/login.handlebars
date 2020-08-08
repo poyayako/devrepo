@@ -1,6 +1,6 @@
 <h2>login</h2>
-
-<form action="/auth/login" method="POST">
+{{> messages}}
+<form action="/user/login" method="POST">
 <section>
 <input type="text" class="form-control" value="{{username}}" placeholder="Username" aria-label="Username" name="username" placeholder="Username">
 </section>
@@ -14,9 +14,4 @@
 <section>
  <button type="submit" class="btn btn-primary btn-block">Login</button>
 </section>
-{{#if message}}
-<div class="alert alert-danger">
-  <strong>Alert!!</strong>{{message}}
-</div>
-{{/if}}
-</form>
+</form> 

@@ -1,9 +1,10 @@
 const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
-
+const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv').config();
-const routes = require('./routes/routes') 
+const routes = require('./routes/routes')
+const usersRoutes = require('./routes/users')
 
 
 const app = express();
@@ -19,11 +20,13 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(cookieParser());
 // Set static folder
 app.use(express.static(path.join(__dirname,'./public')));
 
 // Members API Routes
 app.use('/',routes);
+app.use('/user',usersRoutes);
 
 console.log(__dirname);
 

@@ -4,18 +4,8 @@ const router = express.Router();
 const userAuth = require('../controllers/auth');
 const validateToken = require('../controllers/tokenValidation');
 
-//Homepage
-router.get('/',(req,res) => {
- res.render('index');
-});
+//handlers
 
-//Login
-
-router.get('/login',(req,res) =>{
-	res.render('login');
-});
-
-
-
+router.post('/login',userAuth.login);
 
 module.exports = router;

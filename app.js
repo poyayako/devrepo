@@ -5,7 +5,19 @@ const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv').config();
 const routes = require('./routes/routes')
 const usersRoutes = require('./routes/users')
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
+const passport = require('passport');
 
+const options = {
+	host : 'localhost',
+	port :'3306',
+	user : 'root',
+	password : '',
+	database : 'test',
+};
+
+const sessionStore = new MySQLStore(options);
 
 const app = express();
 
@@ -23,6 +35,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Set static folder
 app.use(express.static(path.join(__dirname,'./public')));
+
+//passport session
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Members API Routes
 app.use('/',routes);

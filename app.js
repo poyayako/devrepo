@@ -8,6 +8,7 @@ const usersRoutes = require('./routes/users')
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
+const flash = require('connect-flash');
 const app = express();
 
 //passport controller
@@ -30,6 +31,8 @@ const sessionStore = new MySQLStore(options);
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
+
+
 // Body Parser Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -47,8 +50,20 @@ app.use(session({
     saveUninitialized: false
 }));
 
+//passport
 app.use(passport.initialize());
 app.use(passport.session());
+
+//connect-flash
+app.use(flash());
+
+
+//Global Variables
+app.use((req,res,next) => {
+ res.locals.errors = req.flash('error');	
+	next();
+});
+
 
 // Members API Routes
 app.use('/',routes);

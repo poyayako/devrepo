@@ -9,7 +9,9 @@ const userAuth = require('../controllers/auth');
 
 router.post('/login',passport.authenticate('local',{
 	successRedirect: '/',
-	failureRedirect: '/login'
+	failureRedirect: '/login',
+	failureFlash: true
+	
 }));
 
 module.exports = router;

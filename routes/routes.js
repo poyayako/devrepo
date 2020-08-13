@@ -14,6 +14,7 @@ router.get('/',authMiddleware(),(req,res) => {
 //Login
 
 router.get('/login',(req,res) =>{
+	console.log('error messages :' + req.flash('error'));
 	res.render('login');
 });
 

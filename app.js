@@ -8,6 +8,10 @@ const usersRoutes = require('./routes/users')
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
+const app = express();
+
+//passport controller
+require('./controllers/passport')(passport);
 
 const options = {
 	host : 'localhost',
@@ -18,8 +22,6 @@ const options = {
 };
 
 const sessionStore = new MySQLStore(options);
-
-const app = express();
 
 // Init middleware
 // app.use(logger);
@@ -52,7 +54,7 @@ app.use(passport.session());
 app.use('/',routes);
 app.use('/user',usersRoutes);
 
-console.log(__dirname);
+//console.log(__dirname);
 
 const PORT = process.env.PORT || 5000;
 

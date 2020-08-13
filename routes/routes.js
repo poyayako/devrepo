@@ -2,10 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 const userAuth = require('../controllers/auth');
-const validateToken = require('../controllers/tokenValidation');
+const authMiddleware = require('../controllers/authMiddleware');
 
 //Homepage
-router.get('/',(req,res) => {
+router.get('/',authMiddleware(),(req,res) => {
+	console.log('routes req.user'+req.user);
+	console.log(req.isAuthenticated());
  res.render('index');
 });
 
@@ -19,3 +21,4 @@ router.get('/login',(req,res) =>{
 
 
 module.exports = router;
+

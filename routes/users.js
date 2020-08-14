@@ -7,11 +7,18 @@ const userAuth = require('../controllers/auth');
 
 //handlers
 
-router.post('/login',passport.authenticate('local',{
+router.post('/login',(req,res,next) => {
+	const oldusername = req.body.username;
+	//console.log('this old username'+oldusername);
+	const testurl = `?username=${oldusername}`;
+
+	//res.local.username = username;
+	passport.authenticate('local',{
 	successRedirect: '/',
-	failureRedirect: '/login',
+	failureRedirect: `/login${testurl}`,
 	failureFlash: true
+})(req,res,next);
 	
-}));
+});
 
 module.exports = router;

@@ -9,6 +9,7 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
 const flash = require('connect-flash');
+const bodyParser = require('body-parser');
 const app = express();
 
 //passport controller
@@ -33,7 +34,7 @@ app.set('view engine', 'handlebars');
 
 
 
-// Body Parser Middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -60,7 +61,8 @@ app.use(flash());
 
 //Global Variables
 app.use((req,res,next) => {
- res.locals.errors = req.flash('error');	
+	
+ res.locals.errors = req.flash('error');
 	next();
 });
 

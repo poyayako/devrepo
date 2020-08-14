@@ -25,10 +25,29 @@ module.exports = (passport) => {
 	  
 	  const searchUser = await usersTable.searchUser(username);
 	  
-	  console.log(searchUser);
+	  //console.log(searchUser);
 	  
 	  if(!searchUser.length){
-	  	console.log();
+	  	return done(null,false,{message: 'username is not already registered'});
+	  }else{
+	  	
+	  	const userID = searchUser[0].id;
+	  	console.log(userID);
+	  	
+	  	bcrypt.compare(password,searchUser[0].password, (err, passwordIsMatched) => {
+	  	
+	  		if(err) throw err;
+	  		
+	  		if(passwordIsMatched){
+	  			return done(null,false,{message: `temp! password matched`});
+	  		}
+	  		
+	  	});
+	  	
+	  	//return done(null,false,{message: `userID is ${userID}`});
+	  	
+	  	
+	  	
 	  }
 	  
 	  

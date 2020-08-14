@@ -7,26 +7,33 @@ let msg = [];
 
 module.exports = (passport) => {
 	
-
 		passport.use(
-		new localStrategy(async (username,password,done) => {
-			console.log(username);
-			console.log(password);
-			const inputs = {username:username,password:password};
-			let validationMsg = loginValidation(inputs);
-	  let errors = [];
-	  //const searchResult = await usersTable.searchUser(username);
-	  console.log(validationMsg);
+			new localStrategy(async (username,password,done) => {
+				console.log(username);
+				console.log(password);
+				const inputs = {username:username,password:password};
+				let validationMsg = loginValidation(inputs);
+		  let errors = [];
+		 
+		  console.log(validationMsg);
+		  
+		 if(!(typeof validationMsg.error === 'undefined')){
+					errors.push({ msg : validationMsg.error.details[0].message });
+				 console.log(errors[0].msg);
+				 return done(null,false,{message: errors[0].msg });
+		 }
 	  
-	 if(!(typeof validationMsg.error === 'undefined')){
-		//errors.push({ msg : validationMsg.error.details[0].message });
-	 //console.log(errors);
-	 return done(null,false,{message: 'invalid username'});
-	 }
+	  const searchUser = await usersTable.searchUser(username);
 	  
-	  //console.log(searchResult);
+	  console.log(searchUser);
 	  
-	  //done(null,'didjdidi',{errors:errors});
+	  if(!searchUser.length){
+	  	console.log();
+	  }
+	  
+	  
+	  
+	  
   }));
   
   
@@ -38,6 +45,5 @@ module.exports = (passport) => {
 			    done(null, userID);
 			});
 
-	
-	
 }
+

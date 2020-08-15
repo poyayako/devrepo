@@ -39,7 +39,9 @@ module.exports = (passport) => {
 	  		if(err) throw err;
 	  		
 	  		if(passwordIsMatched){
-	  			return done(null,false,{message: `temp! password matched`});
+	  			return done(null,userID);
+	  		}else{
+	  			return done(null,false,{message: `mali password mo.`});
 	  		}
 	  		
 	  	});

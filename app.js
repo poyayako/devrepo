@@ -10,20 +10,21 @@ const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
+const dbConfig = require('./models/db.js');
 const app = express();
 
 //passport controller
 require('./controllers/passport')(passport);
 
-const options = {
-	host : 'localhost',
-	port :'3306',
-	user : 'root',
-	password : '',
-	database : 'test',
-};
+// const options = {
+// 	host : 'localhost',
+// 	port :'3306',
+// 	user : 'root',
+// 	password : '',
+// 	database : 'test',
+// };
 
-const sessionStore = new MySQLStore(options);
+const sessionStore = new MySQLStore(dbConfig);
 
 // Init middleware
 // app.use(logger);

@@ -1,6 +1,13 @@
 {{#each errors}}
-<div class="alert alert-warning">
-  error : {{this}}
-</div>
+		<div class="alert alert-warning">
+		  error : {{this}}
+		</div>
 {{/each}}
 
+{{#if registrationErrors}}
+			{{#each registrationErrors}}
+					<div class="alert alert-warning">
+					  error : {{this.msg}}
+					</div>
+			{{/each}}
+{{/if}}

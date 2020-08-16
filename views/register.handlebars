@@ -1,7 +1,7 @@
 
 <h2>Register User</h2>
 {{> messages}}
-<form action="/user/login" method="POST">
+<form action="/user/register" method="POST">
 <section>
 <label for="username">Username</label>
 <input type="text" class="form-control" value="{{username}}" name="username" placeholder="Enter Username" required="true">
@@ -18,10 +18,6 @@
  <input type="password" class="form-control" placeholder="Confirm Password" name="password2" required="true">
 </section>
 <section>
- <span><a href="">Forgot Password?</a></span><br>
- <span><a href="">Register?</a></span>
-</section>
-<section>
- <button type="submit" class="btn btn-primary btn-block">Login</button>
+ <button type="submit" class="btn btn-primary btn-block">Register User</button>
 </section>
 </form> 

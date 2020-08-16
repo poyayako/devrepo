@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const url = require('url');
+const bcrypt = require('bcryptjs');
 
-const userAuth = require('../controllers/auth');
+const userActions = require('../controllers/userActions');
 const authMiddleware = require('../controllers/authMiddleware');
-
+//const inputValidation = require('../controllers/validator.js');
 //Homepage
 router.get('/',authMiddleware(),(req,res) => {
 	console.log('routes req.user'+req.user);
@@ -13,7 +14,7 @@ router.get('/',authMiddleware(),(req,res) => {
  res.render('index');
 });
 
-//Login
+//Login Page
 
 router.get('/login',(req,res) =>{
 	
@@ -26,7 +27,19 @@ router.get('/login',(req,res) =>{
 	}
 });
 
+//Register Page
 
+router.get('/register',(req,res) =>{
+	
+res.render('register');
+
+});
+
+
+//LOGIN POST HANDLERS
+router.post('/user/login',userActions.login);
+
+router.post('/user/register',userActions.register);
 
 
 module.exports = router;

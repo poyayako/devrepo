@@ -4,7 +4,7 @@ const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv').config();
 const routes = require('./routes/routes')
-const usersRoutes = require('./routes/users')
+//const usersRoutes = require('./routes/users')
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const passport = require('passport');
@@ -62,7 +62,7 @@ app.use(flash());
 
 //Global Variables
 app.use((req,res,next) => {
-	
+ 
  res.locals.errors = req.flash('error');
 	next();
 });
@@ -70,7 +70,7 @@ app.use((req,res,next) => {
 
 // Members API Routes
 app.use('/',routes);
-app.use('/user',usersRoutes);
+//app.use('/user',usersRoutes);
 
 //console.log(__dirname);
 

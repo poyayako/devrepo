@@ -17,9 +17,10 @@ router.get('/',authMiddleware(),dbManager.showDatabases,(req,res) => {
 //Login Page
 
 router.get('/login',(req,res) =>{
+
+	if(req.isAuthenticated())res.redirect('/');
 	
 	const oldinput = req.query.username;
-
 	if(typeof req.query.username == 'undefined'){
 		res.render('login');	
 	}else{

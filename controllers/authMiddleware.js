@@ -1,6 +1,6 @@
 
 const express = require('express');
-const dbManager = require('../controllers/dbManagerController');
+
 
 const authMiddleware = () => {  
 	return (req, res, next) => {
@@ -12,5 +12,7 @@ const authMiddleware = () => {
 	    res.redirect('/login')
 	}
 }
+
+
 
 module.exports = authMiddleware;

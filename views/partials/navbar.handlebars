@@ -3,9 +3,14 @@
   <a href="#home" class="active">LeoDB</a>
   <!-- Navigation links (hidden by default) -->
   <div id="myLinks">
-    <a href="#news">Home</a>
-    <a href="#contact">Controls</a>
-    <a href="#about">Logout</a>
+  	{{#if isAuthenticated}}
+    <a href="/">Home</a>
+    <a href="/managedb">managedb</a>
+    <a href="/logout">Logout</a>
+    {{else}}
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+    {{/if}}
   </div>
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">

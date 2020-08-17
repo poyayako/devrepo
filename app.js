@@ -64,6 +64,7 @@ app.use(flash());
 app.use((req,res,next) => {
  
  res.locals.errors = req.flash('error');
+ res.locals.isAuthenticated = req.isAuthenticated();
 	next();
 });
 

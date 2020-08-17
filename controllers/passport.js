@@ -31,17 +31,19 @@ module.exports = (passport) => {
 	  	return done(null,false,{message: 'username is not already registered'});
 	  }else{
 	  	
-	  	const userID = searchUser[0].id;
+	  	const userID = searchUser[0].userid;
 	  	const pass = searchUser[0].password;
-	  	console.log(userID);
+	  	console.log(searchUser[0].userid);
 	  	
 	  	bcrypt.compare(password,searchUser[0].password, (err, passwordIsMatched) => {
 	  	
 	  		if(err) throw err;
 	  		
-	  		console.log(userID);
+	 
 	  		if(passwordIsMatched){
+	  		
 	  			return done(null,userID);
+	  			
 	  		}else{
 	  			return done(null,false,{message: `mali password mo.`});
 	  		}

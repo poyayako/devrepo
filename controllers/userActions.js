@@ -16,7 +16,7 @@ exports.login = (req,res,next) => {
 	successRedirect: '/',
 	failureRedirect: `/login${testurl}`,
 	failureFlash: true
-	});
+	})(req,res,next);
 	
 }
 
@@ -40,6 +40,7 @@ exports.register = async (req,res,next) => {
 				
 			if(checkUsername.length){
 					errors.push({msg: 'Username is already exist'});
+					username='';
 			}
 			if(checkEmail.length){
 					errors.push({msg: 'Email is already exist'});

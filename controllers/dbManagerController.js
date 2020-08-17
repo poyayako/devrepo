@@ -10,7 +10,7 @@ exports.showDatabases = async (req,res,next) => {
 	
 allDatabases.forEach(arrangeDB);
 function arrangeDB(item, index) {
-  // document.getElementById("demo").innerHTML += index + ":" + item + "<br>";
+  
   databases.push({databases : allDatabases[index].Database });
 }
 console.log(databases);

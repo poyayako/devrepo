@@ -40,7 +40,18 @@
   color: white;
 }
 
-.myusericon{
+.myusericon {
 	margin-right: 10px;
+	
+}
+.myfooter{
+	color:#fff;
+	background-color: #000;
+	
+}
+.myfooter hr {
+	
+	color:blue;
+	height:10px;
 	
 }

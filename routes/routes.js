@@ -37,6 +37,7 @@ res.render('register');
 
 
 //LOGIN POST HANDLERS
+
 router.post('/user/login',userActions.login);
 
 router.post('/user/register',userActions.register);

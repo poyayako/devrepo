@@ -7,8 +7,8 @@ const loginValidation = data => {
 		console.log(`this data is from joi validation : ${data}`);	
 	
 	 const schema = joi.object({
-	 username : joi.string().min(6).required(),
-	 password : joi.string().min(6).required()
+	 username : joi.string().min(7).required(),
+	 password : joi.string().min(7).required()
 
 	});
 	
@@ -21,10 +21,10 @@ const registerValidation = data => {
 	
 	const schema = joi.object({
 	 
-	 username : joi.string().min(6).required(),
-	 email : joi.string().email().min(6).required(),
-	 password : joi.string().min(6).required(),
-	 password2 : joi.string().min(6).required()
+	 username : joi.string().min(7).required(),
+	 email : joi.string().email().min(7).required(),
+	 password : joi.string().min(7).required(),
+	 password2 : joi.string().min(7).required()
 
 	});
 

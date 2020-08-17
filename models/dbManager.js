@@ -5,7 +5,7 @@ const dbConnection = mysql.createConnection(dbConfig);
 
 let databaseManager = {};
 
-databaseManager.all = () => {
+databaseManager.showAllDatabases = () => {
 	return new Promise((resolve,reject) => {
 	  dbConnection.query(`show databases`,(err,results) =>{
 	   if(err) throw reject(err);
@@ -13,3 +13,5 @@ databaseManager.all = () => {
 	  });
 	});
 }
+
+module.exports = databaseManager;

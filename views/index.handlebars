@@ -1,7 +1,9 @@
 <h5>Available Databases:</h5>
 <section>
  {{#if databases}}
-			<a href="#" class="btn btn-primary">{{databases}}</a>
+ {{#each databases}}
+			<a href="#" class="btn btn-primary">{{this.databases}}</a>
+	{{/each}}		
  {{else}}
  	<h6>No Database Found</h6>
  {{/if}}

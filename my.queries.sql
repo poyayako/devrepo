@@ -6,3 +6,8 @@ CREATE TABLE Users (
     PRIMARY KEY (UserID)
 );
 
+CREATE TABLE LeoDatabases (
+	Databaseid int NOT NULL,
+	DatabaseName varchar(255) NOT NULL,
+	DatabaseTableCount varchar(255) NOT NULL,
+	

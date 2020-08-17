@@ -26,7 +26,6 @@ exports.register = async (req,res,next) => {
 	const {username,email,password,password2} = req.body;
 	//console.log(validateInput.error.details[0].message);
 	
-	console.log(typeof validateInput.error);
 	if(!(typeof validateInput.error == 'undefined')){
 			errors.push({msg: validateInput.error.details[0].message});
 	}else{

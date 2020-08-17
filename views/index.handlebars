@@ -1,4 +1,8 @@
-<h1>welcome {{username}}</h1>
+<h5>Available Databases:</h5>
 <section>
- <a href="/register" class="btn btn-primary btn-block">Register</a>
+ {{#if showDatabases}}
+			<a href="#" class="btn btn-primary"></a>
+ {{else}}
+ 	<h6>No Database Found</h6>
+ {{/if}}
 </section>

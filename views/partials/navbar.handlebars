@@ -1,9 +1,11 @@
 <!-- Top Navigation Menu -->
 <div class="topnav">
-  <a href="#home" class="active">LeoDB</a>
+  <a href="/" class="active fas fa-database">LeoDB</a>
+  
   <!-- Navigation links (hidden by default) -->
   <div id="myLinks">
   	{{#if isAuthenticated}}
+    
     <a href="/">Home</a>
     <a href="/managedb">managedb</a>
     <a href="/logout">Logout</a>
@@ -14,6 +16,9 @@
   </div>
   <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+  	{{#if currentUser}}
+  	<i class="myusericon far fa-user-circle">{{currentUser}}</i>
+			{{/if}}  	
     <i class="fa fa-bars"></i>
   </a>
 </div>

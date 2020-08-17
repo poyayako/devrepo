@@ -11,7 +11,6 @@ exports.login = (req,res,next) => {
 	
 	const oldusername = req.body.username;
 	const testurl = `?username=${oldusername}`;
-	
 	passport.authenticate('local',{
 	successRedirect: '/',
 	failureRedirect: `/login${testurl}`,

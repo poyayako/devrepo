@@ -3,11 +3,12 @@ const router = express.Router();
 const url = require('url');
 const bcrypt = require('bcryptjs');
 
+const dbManager = require('../controllers/dbManagerController');
 const userActions = require('../controllers/userActions');
 const authMiddleware = require('../controllers/authMiddleware');
 //const inputValidation = require('../controllers/validator.js');
 //Homepage
-router.get('/',authMiddleware(),(req,res) => {
+router.get('/',authMiddleware(),dbManager.showDatabases,(req,res) => {
 	console.log('routes req.user'+req.user);
 	console.log(req.isAuthenticated());
  res.render('index');

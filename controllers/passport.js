@@ -31,7 +31,7 @@ module.exports = (passport) => {
 	  	return done(null,false,{message: 'username is not already registered'});
 	  }else{
 	  	
-	  	const userID = searchUser[0].userid;
+	  	const userID = searchUser[0].username;
 	  	const pass = searchUser[0].password;
 	  	console.log(searchUser[0].userid);
 	  	
@@ -41,7 +41,6 @@ module.exports = (passport) => {
 	  		
 	 
 	  		if(passwordIsMatched){
-	  		
 	  			return done(null,userID);
 	  			
 	  		}else{

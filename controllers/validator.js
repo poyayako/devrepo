@@ -4,12 +4,14 @@ const joi = require('@hapi/joi');
 
 const loginValidation = data => {
 	
-	const schema = joi.object({
-	 
+		console.log(`this data is from joi validation : ${data}`);	
+	
+	 const schema = joi.object({
 	 username : joi.string().min(6).required(),
 	 password : joi.string().min(6).required()
 
 	});
+	
 
 return schema.validate(data);
 	

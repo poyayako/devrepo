@@ -32,12 +32,14 @@ module.exports = (passport) => {
 	  }else{
 	  	
 	  	const userID = searchUser[0].id;
+	  	const pass = searchUser[0].password;
 	  	console.log(userID);
 	  	
 	  	bcrypt.compare(password,searchUser[0].password, (err, passwordIsMatched) => {
 	  	
 	  		if(err) throw err;
 	  		
+	  		console.log(userID);
 	  		if(passwordIsMatched){
 	  			return done(null,userID);
 	  		}else{

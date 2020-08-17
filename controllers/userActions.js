@@ -31,17 +31,45 @@ exports.register = async (req,res,next) => {
 			errors.push({msg: validateInput.error.details[0].message});
 	}else{
 
-					const {username,email,password,password2} = req.body;
+				const {username,email,password,password2} = req.body;
 				
-				//	const searchResult = await usersTable.validateUserData(username);
+				const checkUsername = await usersTable.validateUserData(username,'username');
+				const checkEmail = await usersTable.validateUserData(email,'email');
+			
 				
-				
-				 //if(searchResult.length <= 2){
-				 	//errors.push({msg: `${searchResult[0].COLUMN_NAME} is already taken`});
-				 ///}
-	 
+			if(checkUsername.length){
+					errors.push({msg: 'Username is already exist'});
+					username = '';
+			}
+			if(checkEmail.length){
+					errors.push({msg: 'Email is already exist'});
+					email = '';
+			}
+			if(password != password2){
+					errors.push({msg: 'Password does not match'});
+			}
 	}
 	
-	res.render('register',{registrationErrors:errors});
+ //console.log(checkUsername);
+	//console.log(checkEmail);
+	//console.log(errors);
+	if(errors.length){
+		res.render('register',{
+			registrationErrors:errors,
+			username:username,
+			email:email
+		});	
+	}else{
+			bcrypt.hash(req.body.password, 10,await function(err, hash) {
+					if(err) throw err;
+					
+					const addUser = usersTable.addUser(req.body.username,req.body.email,hash);
+					res.render('login',{
+						success_msg : 'Registration is successful, you can now login!',
+						username:req.body.username
+					});
+			});
+	}
+	
 		
 }

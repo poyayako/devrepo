@@ -36,7 +36,6 @@ router.get('/logout',(req,res) => {
 	req.logout();
 	req.session.destroy();
 	res.redirect('/login');
-	
 });
 
 //Register Page
@@ -54,6 +53,8 @@ router.post('/user/login',userActions.login);
 
 router.post('/user/register',userActions.register);
 
+//manageDB Routes
+router.get('/showtables/:databasename',authMiddleware(),dbManagerController.showTables);
 
 module.exports = router;
 

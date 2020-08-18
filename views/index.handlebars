@@ -1,10 +1,11 @@
 <h5>Available Databases:</h5>
-<section>
+
  {{#if databases}}
+<!-- <form method="POST" action="showtables"> -->
  {{#each databases}}
-			<a href="#" class="btn btn-primary btn-block">{{this.databases}}</a>
-	{{/each}}		
+			<a href="/showtables/{{this.databases}}" class="btn btn-primary btn-block" name="dbname">{{this.databases}}</a>
+	{{/each}}
+	<!--</form>-->
  {{else}}
  	<h6>No Database Found</h6>
  {{/if}}
-</section>

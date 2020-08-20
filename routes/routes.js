@@ -55,6 +55,7 @@ router.post('/user/register',userActions.register);
 
 //manageDB Routes
 router.get('/showtables/:databasename',authMiddleware(),dbManagerController.showTables);
+router.get('/showtables/showtableinfo/:tablename',authMiddleware(),dbManagerController.showTableInfo);
 
 module.exports = router;
 

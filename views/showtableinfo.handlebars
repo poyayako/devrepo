@@ -1,0 +1,32 @@
+<h5>Fields of table tbl_name :</h5>
+
+ {{#if tableinfos}}
+<!-- <form method="POST" action="showtables"> -->
+<table>
+	<thead>
+<tr>
+	<th>Field</th>
+	<th>Type</th>
+	<th>Null</th>
+	<th>Key</th>
+	<th>Default</th>
+	<th>Extra</th>
+</tr>
+</thead>
+<tbody>
+ {{#each tableinfos}}
+			<tr>
+			<td>{{this.tablefield}}</td>
+			<td>{{this.tabletype}}</td>
+			<td>{{this.tablenull}}</td>
+			<td>{{this.tablekey}}</td>
+			<td>{{this.tabledefault}}</td>
+			<td>{{this.tableextra}}</td>
+			<tr>
+	{{/each}}
+</tbody>	
+	</table>
+	<!--</form>-->
+ {{else}}
+ 	<h6>No field/s Found</h6>
+ {{/if}}

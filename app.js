@@ -65,6 +65,7 @@ app.use((req,res,next) => {
  
 		 res.locals.errors = req.flash('error');
 		 res.locals.isAuthenticated = req.isAuthenticated();
+		 //res.local.originalUrl = req.originalUrl;
 		 res.locals.currentUser = req.user;
 	next();
 });
@@ -76,6 +77,6 @@ app.use('/',routes);
 
 //console.log(__dirname);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

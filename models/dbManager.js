@@ -19,16 +19,18 @@ exports.showTables = (databaseName) => {
 	  dbConnection.query(`use ${databaseName}; show tables;`,(err,results) =>{
 	   if(err) throw reject(err);
 	   return resolve(results[1]);
+	   //return resolve(results[1]);
 	  });
 	});
 }
 
 
-exports.showTableInfo = (tableName) => {
+exports.showTableInfo = (databaseName,tableName) => {
 	return new Promise((resolve,reject) => {
-	  dbConnection.query(`describe ${tableName}`,(err,results) =>{
+	  dbConnection.query(`use ${databaseName}; describe ${tableName};`,(err,results) =>{
 	   if(err) throw reject(err);
-	   return resolve(results);
+	   return resolve(results[1]);
+	   //return resolve(results[1]);
 	  });
 	});
 }

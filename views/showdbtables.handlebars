@@ -1,35 +1,11 @@
-<h5>Tables</h5>
+<h5>Tables of {{dbname}}{{originalurl}}</h5>
 
  {{#if tables}}
+<!-- <form method="POST" action="showtables"> -->
  {{#each tables}}
-			<a class="accordion fa fa-table" name="viewtable">{{this.tables}}</a>
-			<div class="panel">
-  	<p>Lorem ipsum...</p>
-		</div>
+			<a href="showtableinfo/{{this.tables}}" class="btn btn-primary btn-block" name="tblname">{{this.tables}}</a>
 	{{/each}}
-
+	<!--</form>-->
  {{else}}
- 
+ 	<h6>No Database Found</h6>
  {{/if}}
-
-<script>
-	var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    /* Toggle between adding and removing the "active" class,
-    to highlight the button that controls the panel */
-    
-    this.classList.toggle("active-accordion");
-
-    /* Toggle between hiding and showing the active panel */
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
-}
-</script>

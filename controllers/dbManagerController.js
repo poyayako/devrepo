@@ -18,42 +18,59 @@ exports.showDatabases = async (req,res,next) => {
 	
 }
 
-exports.showTables = async (req,res,next) => {
-	console.log(req.params);
+let dbName = "";
+exports.showTables = async (req,res) => {
+console.log(req.params);
 	
-	let tables = [];
-	let tableNames = [];
-	let tableInfo = [];
 	
-	const dbName = req.params.databasename;
-	const dbTables = await dbManager.showTables(dbName);	
+let tables = [];
+let tableinfos = [];
+
+
+
+dbName = req.params.databasename;
+const dbTables = await dbManager.showTables(dbName);	
 	
-	//const objCount = Object.keys(dbTables).length;
-	
+
 	dbTables.forEach(arrangeTables);
-			
+	
 	function arrangeTables(item, index){
-				let normalObj = Object.assign({}, dbTables[index]);
-				 
-				tables.push({tables : normalObj[`Tables_in_${dbName}`]});
-	}
-	
-	tables.forEach(arrangeInfo);			
-	async function arrangeInfo(item, index){
-			const dbTableInfo = await dbManager.showTableInfo(tables[index].tables);
-			//tableInfo.push({});
-		console.log(dbTableInfo.Field);
-	}
+	let	normalObj = Object.assign({}, dbTables[index]);
+	let tblName = normalObj[`Tables_in_${dbName}`];
+	 		tables.push({tables : normalObj[`Tables_in_${dbName}`]});
 		
-		
-		//	const dbTableInfo = await dbManager.showTableInfo('leodb');			
-			// console.log(tableInfo);
-	 console.log(tables[0].tables);
-	 
-	 
-	
-	res.render('showdbtables',{
+}
+console.log(tables);			
+		res.render('showdbtables',{
+		dbname : dbName,
 		tables:tables
-	});
+  	});
 	
+}
+
+
+exports.showTableInfo = async (req,res) => {
+			const tblName = req.params.tablename;
+			let tableinfos = [];
+			const dbTableInfo = await dbManager.showTableInfo(dbName,tblName);
+			
+			dbTableInfo.forEach(arrangeTableInfo);
+	
+			function arrangeTableInfo(item, index){
+				//let	normalObj = Object.assign({}, dbTables[index]);
+				//let tblName = normalObj[`Tables_in_${dbName}`];
+		 	//tableinfos.push({tableinfo : normalObj[`Tables_in_${dbName}`]});
+		 	tableinfos.push({
+		 		tablefield : item.Field,
+		 		tabletype : item.Type,
+		 		tablenull : item.Null,
+		 		tableKey : item.Key,
+		 		tabledefault : item.Default,
+		 		tableextra : item.Extra
+		 	});
+		 	
+			}
+			console.log(tableinfos);
+	
+res.render('showtableinfo',{tableinfos:tableinfos});
 }
